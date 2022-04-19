@@ -213,7 +213,7 @@ sup {
 }
 @media screen and (max-width: 914px) {
    body {
-      font-size: 1.7em;
+      font-size: 2em;
    }
 }
 @media print {
