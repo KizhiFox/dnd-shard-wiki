@@ -22,7 +22,7 @@ def generate_webpage(md_filename, path):
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="{"".join(["../" for _ in range(len(path))])}{CSS_FILENAME}">
 </head>
-<body>
+<body><font size="+1">
 <p>{navigation_links}</p>
 '''
 
@@ -31,7 +31,7 @@ def generate_webpage(md_filename, path):
     md_in.close()
 
     output += '''
-</body>
+</font></body>
 </html>
 '''
 
