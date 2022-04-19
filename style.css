@@ -37,6 +37,9 @@ hr {
    padding: 0;
 }
 
+
+li p.first {
+   display: inline-block; }
 li {
    margin: 0; }
 ul, ol {

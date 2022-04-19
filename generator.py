@@ -24,7 +24,7 @@ def generate_webpage(md_filename, path):
 <head>
 <meta charset="utf-8">
 <title>{'Main page' if len(routes) == 0 else routes[-1]}</title>
-<link rel="icon" type="image/x-icon" href="{main_page_rel}/favicon.ico">
+<link rel="icon" type="image/x-icon" href="{main_page_rel}favicon.ico">
 <link rel="stylesheet" type="text/css" href="{main_page_rel}{CSS_FILENAME}">
 </head>
 <body>
