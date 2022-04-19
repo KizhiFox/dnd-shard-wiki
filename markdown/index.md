@@ -2,4 +2,4 @@
 
 [География](geography)
 
-[Тест стилей](sample-md.html)
+[Тест стилей](sample-md)
