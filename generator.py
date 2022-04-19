@@ -10,17 +10,17 @@ CSS_FILENAME = 'style.css'
 
 
 def generate_webpage(md_filename, path):
-    navigation_links = '/ <a href="/dnd-shard-wiki">Main page</a>'
+    navigation_links = f'/ <a href="{"".join(["../" for _ in range(len(path))])}">Main page</a>'
     routes = []
     for i, route in enumerate(path):
         routes.append(route)
-        navigation_links += f' / <a href=dnd-shard-wiki/{"/".join(routes)}>{route}</a>'
+        navigation_links += f' / <a href="{"".join(["../" for _ in range(len(path) - i - 1)])}">{route}</a>'
 
     output = f'''<!DOCTYPE html> 
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<link rel=”stylesheet” type=”text/css” href=”/dnd-shard-wiki/{CSS_FILENAME}”>
+<link rel="stylesheet" type="text/css" href="{"".join(["../" for _ in range(len(path))])}{CSS_FILENAME}">
 </head>
 <body>
 <p>{navigation_links}</p>
