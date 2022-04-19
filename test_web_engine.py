@@ -5,7 +5,7 @@ import sys
 
 @get('/style.css')
 def style_css():
-  return static_file('style.css', root='html/style.css')
+  return static_file('style.css', root='./docs')
 
 
 @route('<filepath:path>')
