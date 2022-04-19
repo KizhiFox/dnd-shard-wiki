@@ -9,12 +9,12 @@ HTML_DIRECTORY = 'docs'
 CSS_FILENAME = 'style.css'
 
 
-def generate_webpage(md_filename, css_filename, path):
+def generate_webpage(md_filename, path):
     navigation_links = '/ <a href="/dnd-shard-wiki">Main page</a>'
     routes = []
     for i, route in enumerate(path):
         routes.append(route)
-        navigation_links += f' / <a href="/dnd-shard-wiki/{"/".join(routes)}">{route}</a>'
+        navigation_links += f' / <a href="dnd-shard-wiki/{"/".join(routes)}">{route}</a>'
 
     output = f'''<!DOCTYPE html> 
 <html lang="en">
@@ -54,7 +54,7 @@ if __name__ == '__main__':
             os.makedirs(new_path, exist_ok=True)
 
             if '.md' in file:
-                webpage = generate_webpage(root_file, CSS_FILENAME, pathlib.Path(root).parts[1:])
+                webpage = generate_webpage(root_file, pathlib.Path(root).parts[1:])
                 html_file = os.path.join(new_path, ''.join(file.split('.')[:-1]) + '.html')
                 with open(html_file, 'w', encoding='utf8') as f:
                     f.write(webpage)
