@@ -1,3 +1,4 @@
 #!/bin/bash
 
-python -m http.server --directory ./docs/
+venv/bin/python generator.py
+venv/bin/python -m http.server --directory ./docs/

@@ -1,7 +1,8 @@
-import markdown
 import os
 import shutil
 import pathlib
+import markdown
+from markdown.extensions.toc import TocExtension
 
 
 MD_DIRECTORY = 'markdown'
@@ -10,7 +11,9 @@ CSS_FILENAME = 'style.css'
 
 
 def generate_webpage(md_filename, path):
-    navigation_links = f'/ <a href="{"".join(["../" for _ in range(len(path))])}">Main page</a>'
+    main_page_rel = "".join(["../" for _ in range(len(path))])
+
+    navigation_links = f'/ <a href="{main_page_rel}">Main page</a>'
     routes = []
     for i, route in enumerate(path):
         routes.append(route)
@@ -20,15 +23,18 @@ def generate_webpage(md_filename, path):
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="{"".join(["../" for _ in range(len(path))])}{CSS_FILENAME}">
+<title>{'Main page' if len(routes) == 0 else routes[-1]}</title>
+<link rel="icon" type="image/x-icon" href="{main_page_rel}/favicon.ico">
+<link rel="stylesheet" type="text/css" href="{main_page_rel}{CSS_FILENAME}">
 </head>
 <body>
 <p>{navigation_links}</p>
 '''
 
-    md_in = open(md_filename)
-    output += markdown.markdown(md_in.read())
-    md_in.close()
+    with open(md_filename, 'r', encoding='utf8') as f:
+        md_in = f.read()
+    md_in.replace('="/', f'="{main_page_rel}')
+    output += markdown.markdown(md_in, extensions=[TocExtension(toc_depth='2-6')])
 
     output += '''
 </body>
@@ -43,6 +49,7 @@ if __name__ == '__main__':
 
     os.makedirs(HTML_DIRECTORY, exist_ok=True)
     shutil.copy(CSS_FILENAME, os.path.join(HTML_DIRECTORY, CSS_FILENAME))
+    shutil.copy('favicon.ico', os.path.join(HTML_DIRECTORY, 'favicon.ico'))
 
     for root, dirs, files in os.walk('markdown'):
         for file in files:
