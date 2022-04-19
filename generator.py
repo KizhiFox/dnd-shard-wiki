@@ -14,7 +14,7 @@ def generate_webpage(md_filename, css_filename, path):
     routes = []
     for i, route in enumerate(path):
         routes.append(route)
-        navigation_links += f' / <a href="{"/".join(routes)}">{route}</a>'
+        navigation_links += f' / <a href="/{"/".join(routes)}">{route}</a>'
 
     output = f'''<!DOCTYPE html> 
 <html lang="en">
