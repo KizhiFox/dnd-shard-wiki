@@ -5,7 +5,7 @@ import pathlib
 
 
 MD_DIRECTORY = 'markdown'
-HTML_DIRECTORY = 'html'
+HTML_DIRECTORY = 'docs'
 CSS_FILENAME = 'style.css'
 
 
