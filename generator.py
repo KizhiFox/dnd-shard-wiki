@@ -33,8 +33,9 @@ def generate_webpage(md_filename, path):
 
     with open(md_filename, 'r', encoding='utf8') as f:
         md_in = f.read()
-    md_in.replace('="/', f'="{main_page_rel}')
-    output += markdown.markdown(md_in, extensions=[TocExtension(toc_depth='2-6')])
+    html_out = markdown.markdown(md_in, extensions=[TocExtension(toc_depth='2-6')])
+    html_out = html_out.replace('="/', f'="{main_page_rel}')
+    output += html_out
 
     output += '''
 </body>
