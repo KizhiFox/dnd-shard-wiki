@@ -2,12 +2,18 @@ import os
 import shutil
 import pathlib
 import markdown
+from slugify import slugify
 from markdown.extensions.toc import TocExtension
 
 
 MD_DIRECTORY = 'markdown'
 HTML_DIRECTORY = 'docs'
 CSS_FILENAME = 'style.css'
+TOC = TocExtension(
+    toc_depth='2-6',
+    slugify=slugify,
+    anchorlink=True
+)
 
 
 def generate_webpage(md_filename, path):
@@ -18,6 +24,7 @@ def generate_webpage(md_filename, path):
     for i, route in enumerate(path):
         routes.append(route)
         navigation_links += f' / <a href="{"".join(["../" for _ in range(len(path) - i - 1)])}">{route}</a>'
+    navigation_links = navigation_links.replace('href=""', 'href="#"')
 
     output = f'''<!DOCTYPE html> 
 <html lang="en">
@@ -33,7 +40,7 @@ def generate_webpage(md_filename, path):
 
     with open(md_filename, 'r', encoding='utf8') as f:
         md_in = f.read()
-    html_out = markdown.markdown(md_in, extensions=[TocExtension(toc_depth='2-6')])
+    html_out = markdown.markdown(md_in, extensions=[TOC])
     html_out = html_out.replace('="/', f'="{main_page_rel}')
     output += html_out
 

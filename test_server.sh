@@ -2,6 +2,7 @@
 
 function ctrl_c() {
     kill $serv_pid
+    echo -e "\nShutdown"
     exit
 }
 
