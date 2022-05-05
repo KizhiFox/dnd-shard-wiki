@@ -6,15 +6,55 @@ from slugify import slugify
 from markdown.extensions.toc import TocExtension
 
 
+def spell_card(ctx, title=None, level=None, school=None, casting_time=None, distance=None, components=None, duration=None, classes=None):
+
+    spell_html = '<div class="spellcard">\n'
+
+    if title:
+        spell_html += f'<p class="spellcard-title">{title}</p>\n'
+    if str(level).isdigit():
+        level = str(level) + ' уровень'
+    if level or school:
+        spell_html += f'<p class="spellcard-level-school">{", ".join([x for x in [level, school] if x is not None])}</p>\n'
+    if casting_time:
+        spell_html += f'<p class="spellcard-property"><b>Время накладывания:</b> {casting_time}</p>\n'
+    if distance:
+        spell_html += f'<p class="spellcard-property"><b>Дистанция</b>: {distance}</p>\n'
+    if components:
+        spell_html += f'<p class="spellcard-property"><b>Компоненты</b>: {components}</p>\n'
+    if duration:
+        spell_html += f'<p class="spellcard-property"><b>Длительность</b>: {duration}</p>\n'
+    if classes:
+        spell_html += f'<p class="spellcard-property"><b>Классы</b>: {classes}</p>\n'
+
+    text_blocks = [f'<p class="spellcard-text">{line}</p>' for line in ctx.content.split('\n') if line != '']
+    content = '\n'.join(text_blocks)
+
+    spell_html += f'{content}\n</div>'
+
+    return spell_html
+
+
 MD_DIRECTORY = 'markdown'
 HTML_DIRECTORY = 'docs'
 CSS_FILENAME = 'style.css'
+HTML_LANG = 'ru'
 TOC = TocExtension(
     toc_depth='2-6',
     slugify=slugify,
     anchorlink=True
 )
-
+EXTENSIONS = [
+    TOC,
+    'customblocks'
+]
+EXT_CONFIGS = {
+    'customblocks': {
+        'generators': {
+            'spell_card': spell_card
+        }
+    }
+}
 
 def generate_webpage(md_filename, path):
     main_page_rel = "".join(["../" for _ in range(len(path))])
@@ -27,7 +67,7 @@ def generate_webpage(md_filename, path):
     navigation_links = navigation_links.replace('href=""', 'href="#"')
 
     output = f'''<!DOCTYPE html> 
-<html lang="en">
+<html lang="{HTML_LANG}">
 <head>
 <meta charset="utf-8">
 <title>{'Main page' if len(routes) == 0 else routes[-1]}</title>
@@ -40,7 +80,7 @@ def generate_webpage(md_filename, path):
 
     with open(md_filename, 'r', encoding='utf8') as f:
         md_in = f.read()
-    html_out = markdown.markdown(md_in, extensions=[TOC])
+    html_out = markdown.markdown(md_in, extensions=EXTENSIONS, extension_configs=EXT_CONFIGS)
     html_out = html_out.replace('="/', f'="{main_page_rel}')
     output += html_out
 
