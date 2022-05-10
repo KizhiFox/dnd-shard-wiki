@@ -308,6 +308,60 @@ sup {
     line-height: 0;
 }
 
+.spellcard {
+    background-color: #eee6d0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 10px;
+    border-color: #bbaa90;
+    border-width: 2px;
+    border-style: solid;
+}
+.spellcard-title a, .spellcard-title {
+    font-size: 1.3em;
+    color: #2b1d0e;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.spellcard-level-school {
+    font-style: italic;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.spellcard-property {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.itemcard {
+    background-color: #eee6d0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 10px;
+    border-color: #bbaa90;
+    border-width: 2px;
+    border-style: solid;
+}
+.itemcard-title a, .itemcard-title {
+    font-size: 1.3em;
+    color: #2b1d0e;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.itemcard-description {
+    font-style: italic;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.itemcard-property {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 @media screen and (min-width: 914px) {
     body {
         width: 854px;
@@ -385,58 +439,20 @@ sup {
         border-color: #555;
         background-color: #333;
     }
-}
 
-.spellcard {
-    background-color: #eee6d0;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 15px;
-    padding-left: 15px;
-    border-radius: 10px;
-    border-color: #bbaa90;
-    border-width: 2px;
-    border-style: solid;
-}
-.spellcard-title {
-    font-size: 1.3em;
-    color: #2b1d0e;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-.spellcard-level-school {
-    font-style: italic;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-.spellcard-property {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
 
-.itemcard {
-    background-color: #eee6d0;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 15px;
-    padding-left: 15px;
-    border-radius: 10px;
-    border-color: #bbaa90;
-    border-width: 2px;
-    border-style: solid;
-}
-.itemcard-title {
-    font-size: 1.3em;
-    color: #2b1d0e;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-.itemcard-description {
-    font-style: italic;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-.itemcard-property {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    .spellcard {
+        background-color: #22201e;
+        border-color: #645e53;
+    }
+    .itemcard {
+        background-color: #22201e;
+        border-color: #645e53;
+    }
+    .spellcard-title a, .spellcard-title {
+        color: #cfc1ac !important;
+    }
+    .itemcard-title a, .itemcard-title {
+        color: #cfc1ac !important;
+    }
 }
