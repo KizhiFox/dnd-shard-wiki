@@ -5,34 +5,7 @@ import markdown
 from slugify import slugify
 from markdown.extensions.toc import TocExtension
 
-
-def spell_card(ctx, title=None, level=None, school=None, casting_time=None, distance=None, components=None, duration=None, classes=None):
-
-    spell_html = '<div class="spellcard">\n'
-
-    if title:
-        spell_html += f'<p class="spellcard-title">{title}</p>\n'
-    if str(level).isdigit():
-        level = str(level) + ' уровень'
-    if level or school:
-        spell_html += f'<p class="spellcard-level-school">{", ".join([x for x in [level, school] if x is not None])}</p>\n'
-    if casting_time:
-        spell_html += f'<p class="spellcard-property"><b>Время накладывания:</b> {casting_time}</p>\n'
-    if distance:
-        spell_html += f'<p class="spellcard-property"><b>Дистанция</b>: {distance}</p>\n'
-    if components:
-        spell_html += f'<p class="spellcard-property"><b>Компоненты</b>: {components}</p>\n'
-    if duration:
-        spell_html += f'<p class="spellcard-property"><b>Длительность</b>: {duration}</p>\n'
-    if classes:
-        spell_html += f'<p class="spellcard-property"><b>Классы</b>: {classes}</p>\n'
-
-    text_blocks = [f'<p class="spellcard-text">{line}</p>' for line in ctx.content.split('\n') if line != '']
-    content = '\n'.join(text_blocks)
-
-    spell_html += f'{content}\n</div>'
-
-    return spell_html
+import custom_blocks
 
 
 MD_DIRECTORY = 'markdown'
@@ -51,7 +24,8 @@ EXTENSIONS = [
 EXT_CONFIGS = {
     'customblocks': {
         'generators': {
-            'spell_card': spell_card
+            'spell_card': custom_blocks.spell_card,
+            'item_card': custom_blocks.item_card
         }
     }
 }

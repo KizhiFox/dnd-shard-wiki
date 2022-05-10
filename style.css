@@ -413,3 +413,30 @@ sup {
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
+.itemcard {
+    background-color: #eee6d0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 10px;
+    border-color: #bbaa90;
+    border-width: 2px;
+    border-style: solid;
+}
+.itemcard-title {
+    font-size: 1.3em;
+    color: #2b1d0e;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.itemcard-description {
+    font-style: italic;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.itemcard-property {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
