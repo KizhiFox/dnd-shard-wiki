@@ -318,6 +318,7 @@ sup {
     border-color: #bbaa90;
     border-width: 2px;
     border-style: solid;
+    margin: 10px;
 }
 .spellcard-title a, .spellcard-title {
     font-size: 1.3em;
@@ -345,6 +346,7 @@ sup {
     border-color: #bbaa90;
     border-width: 2px;
     border-style: solid;
+    margin: 10px;
 }
 .itemcard-title a, .itemcard-title {
     font-size: 1.3em;

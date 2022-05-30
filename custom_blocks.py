@@ -1,3 +1,5 @@
+import markdown
+
 def spell_card(ctx, title=None, level=None, school=None, casting_time=None, distance=None, components=None, duration=None, classes=None, header='3'):
 
     spell_html = '<div class="spellcard">\n'
@@ -19,7 +21,7 @@ def spell_card(ctx, title=None, level=None, school=None, casting_time=None, dist
     if classes:
         spell_html += f'<p class="spellcard-property"><b>Классы</b>: {classes}</p>\n'
 
-    text_blocks = [f'<p class="spellcard-text">{line}</p>' for line in ctx.content.split('\n') if line != '']
+    text_blocks = [f'<p class="spellcard-text">{line}</p>' for line in ctx.content.split('\n\n') if line != '']
     content = '\n'.join(text_blocks)
 
     spell_html += f'{content}\n</div>'
@@ -63,7 +65,7 @@ def item_card(ctx, title=None, type=None, subtype=None, quality=None, subquality
     if price:
         item_html += f'<p class="itemcard-property"><b>Рекомендованная стоимость</b>: {price}</p>\n'
 
-    text_blocks = [f'<p class="itemcard-text">{line}</p>' for line in ctx.content.split('\n') if line != '']
+    text_blocks = [f'<p class="itemcard-text">{line}</p>' for line in ctx.content.split('\n\n') if line != '']
     content = '\n'.join(text_blocks)
 
     item_html += f'{content}\n</div>'
